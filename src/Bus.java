@@ -14,6 +14,8 @@ public class Bus extends Vehicle{
         super(color, capacity, licensePlateNo, year, model, make);
         this.frontDoor = frontDoor;
         this.backDoor = backDoor;
+        this.frontDoorOpened = false;
+        this.backDoorOpened = false;
     }
 
     public Boolean getFrontDoor() {
@@ -36,16 +38,44 @@ public class Bus extends Vehicle{
         return frontDoorOpened;
     }
 
-    public void setFrontDoorOpened(Boolean frontDoorOpened) {
-        this.frontDoorOpened = frontDoorOpened;
-    }
+    // public void setFrontDoorOpened(Boolean frontDoorOpened) {
+    //     this.frontDoorOpened = frontDoorOpened;
+    // }
 
     public Boolean getBackDoorOpened() {
         return backDoorOpened;
     }
 
-    public void setBackDoorOpened(Boolean backDoorOpened) {
-        this.backDoorOpened = backDoorOpened;
+    // public void setBackDoorOpened(Boolean backDoorOpened) {
+    //     this.backDoorOpened = backDoorOpened;
+    // }
+
+    //door: front or back
+    public void setDoorStatus (String door){
+
+        if(door.toLowerCase().equals("front")){
+            if(frontDoor){
+                //either open or close the door
+                this.frontDoorOpened = !this.frontDoorOpened;
+            }else {
+                System.err.println("There is no " + door + " door.");
+            }
+        }
+
+        if(door.toLowerCase().equals("back")){
+            if(backDoor){
+                //either open or close the door
+                this.backDoorOpened = !this.backDoorOpened;
+            }else {
+                System.err.println("There is no " + door + " door.");
+            }
+        }
+
+    }
+    //getter
+    public void getDoorStatus(){
+        System.out.println("Front door: " + frontDoor + ", Opened: " + frontDoorOpened);
+        System.out.println("Back door: " + backDoor + ", Opened: " + backDoorOpened);
     }
 
     @Override
@@ -97,6 +127,28 @@ public class Bus extends Vehicle{
                 + ", backDoorOpened=" + backDoorOpened + ", model=" + this.getModel() + "]";
     }
 
-    
-    
+    @Override
+    public void honk(){
+        System.out.println("Booo... Boo... Boo...");
+    }
+
+    @Override
+    public void moveForward() {
+        System.out.println("Bus is moving forward.");
+    }
+
+    @Override
+    public void moveBackward() {
+        System.out.println("Bus is moving backward.");
+    }
+
+    @Override
+    public void moveLeft() {
+        System.out.println("Bus is moving left...");
+    }
+
+    @Override
+    public void moveRight() {
+        System.out.println("Bus is moving right...");
+    }
 }
